@@ -83,6 +83,15 @@ const MyWorldCanvas: React.FC = () => {
   return (
     <section className="my-world-section" id="my-world">
       <div className="canvas-viewport" ref={containerRef}>
+        {/* Section Header as static overlay */}
+        <div className="section-header">
+          <h2 className="section-title">
+            my <span className="title-accent">world</span>
+          </h2>
+          <p className="section-subtitle">a short snapshot of things I need to function in this world.</p>
+          <p className="section-hint">Hold and drag to move around the canvas.</p>
+        </div>
+
         <motion.div 
           className="canvas-container"
           drag
@@ -91,15 +100,6 @@ const MyWorldCanvas: React.FC = () => {
           dragConstraints={containerRef}
           whileTap={{ cursor: 'grabbing' }}
         >
-          {/* Section Header moved inside canvas */}
-          <div className="section-header">
-            <h2 className="section-title">
-              my <span className="title-accent">world</span>
-            </h2>
-            <p className="section-subtitle">a short snapshot of things I need to function in this world.</p>
-            <p className="section-hint">Hold and drag to move around the canvas.</p>
-          </div>
-
           {/* Subtle grid background */}
           <div className="canvas-grid" />
           
