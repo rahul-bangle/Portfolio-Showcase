@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion } from 'framer-motion';
 import './MyWorldCanvas.css';
 import StickerItem from './StickerItem';
 
@@ -72,13 +72,7 @@ const stickers = [
 const MyWorldCanvas: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Motion values for panning
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
   
-  // Smooth springs for panning
-  const springX = useSpring(x, { stiffness: 100, damping: 30 });
-  const springY = useSpring(y, { stiffness: 100, damping: 30 });
 
   return (
     <section className="my-world-section" id="my-world">

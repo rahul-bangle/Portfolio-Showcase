@@ -9,12 +9,9 @@ import {
   Linkedin,
   Download,
   Bot,
-  MessageSquareMore,
   Zap
 } from 'lucide-react';
 import avatar from './assets/avatar.png';
-import mcTaskBoard from './assets/projects/mission-control/task-board.png';
-import mcStrategyTimeline from './assets/projects/mission-control/strategy-timeline.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
 import { ComparisonCanvas } from './components/ComparisonCanvas';
 import { PhoneMockup } from './components/PhoneMockup';
@@ -29,7 +26,6 @@ import nlResult from './assets/projects/nextleap/nextleap-3-result.png';
 import hhScan from './assets/projects/nextleap/camera-scan.png';
 import hhWave from './assets/projects/nextleap/waveforms.png';
 import pmCopilotImg from './assets/projects/side-quests/pm-copilot.png';
-import sbiAssistantImg from './assets/projects/side-quests/sbi-assistant.png';
 import jobAutomatorImg from './assets/projects/side-quests/job-automator.png';
 import './App.css';
 

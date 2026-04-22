@@ -689,8 +689,6 @@ html {
 }
 
 /* Slightly larger to act as a foundation */
-}
-
 .project-screenshots img {
   width: 100%;
   height: 100%;
@@ -1051,6 +1049,4 @@ html {
   .approach-card-title .highlight-box {
     font-size: 1.6rem;
   }
-}
-
 }

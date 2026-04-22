@@ -6,7 +6,6 @@ import { useGSAP } from '@gsap/react';
 import './ProjectCarousel.css';
 
 gsap.registerPlugin(Draggable, InertiaPlugin);
-useGSAP.register(gsap);
 
 interface ProjectCarouselProps {
   images: string[];
@@ -22,9 +21,7 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images }) => {
 
     const carousel = carouselRef.current;
     const items = Array.from(carousel.children) as HTMLElement[];
-    const itemWidth = 280;
     const spacing = 280; // Distance between items when flat
-    const totalWidth = items.length * spacing;
 
     const updateItems = (x: number) => {
       const centerXOffset = (items.length - 1) * spacing / 2;

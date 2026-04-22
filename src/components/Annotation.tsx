@@ -7,13 +7,15 @@ interface AnnotationProps {
   arrowType?: 'curly' | 'loop' | 'simple';
   direction?: 'left' | 'right' | 'up' | 'down';
   className?: string;
+  style?: React.CSSProperties;
 }
 
 export const Annotation: React.FC<AnnotationProps> = ({ 
   text, 
   arrowType = 'curly', 
   direction = 'right', 
-  className = '' 
+  className = '',
+  style
 }) => {
   // SVG Paths for hand-drawn look
   const paths = {
@@ -30,7 +32,7 @@ export const Annotation: React.FC<AnnotationProps> = ({
   };
 
   return (
-    <div className={`annotation-container ${className}`}>
+    <div className={`annotation-container ${className}`} style={style}>
       <motion.div 
         initial={{ opacity: 0, x: -10 }}
         whileInView={{ opacity: 1, x: 0 }}

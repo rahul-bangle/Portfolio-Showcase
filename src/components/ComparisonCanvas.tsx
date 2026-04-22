@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect, MouseEvent as ReactMouseEvent, TouchEvent as ReactTouchEvent } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './ComparisonCanvas.css';
 
 // Use Vite's glob import to get all images dynamically
