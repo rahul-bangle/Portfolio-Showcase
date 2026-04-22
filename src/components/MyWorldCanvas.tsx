@@ -85,7 +85,8 @@ const MyWorldCanvas: React.FC = () => {
       <div className="section-header">
         <span className="section-tag">PERSONAL</span>
         <h2 className="section-title">My World</h2>
-        <p className="section-subtitle">A draggable canvas of things that keep me sane.</p>
+        <p className="section-subtitle">a short snapshot of things I need to function in this world.</p>
+        <p className="section-hint">Hold and drag to move around the canvas.</p>
       </div>
 
       <div className="canvas-viewport" ref={containerRef}>
