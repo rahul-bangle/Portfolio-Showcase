@@ -3,40 +3,58 @@ import {
   User, 
   Briefcase, 
   MousePointer2, 
-  MessageSquare, 
   Globe, 
   Mail, 
   FileText,
   Linkedin,
-  Download
+  Download,
+  Bot,
+  MessageSquareMore,
+  Zap
 } from 'lucide-react';
 import avatar from './assets/avatar.png';
 import mcTaskBoard from './assets/projects/mission-control/task-board.png';
 import mcStrategyTimeline from './assets/projects/mission-control/strategy-timeline.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
 import { ComparisonCanvas } from './components/ComparisonCanvas';
+import { PhoneMockup } from './components/PhoneMockup';
+import { ProjectCarousel } from './components/ProjectCarousel';
+import { Annotation } from './components/Annotation';
+import { SideQuestCard } from './components/SideQuestCard';
+import MyWorldCanvas from './components/MyWorldCanvas';
+import { ContactWidget } from './components/ContactWidget';
+import nlHome from './assets/projects/nextleap/nextleap-1-home.png';
+import nlVoice from './assets/projects/nextleap/nextleap-2-voice.png';
+import nlResult from './assets/projects/nextleap/nextleap-3-result.png';
+import hhScan from './assets/projects/nextleap/camera-scan.png';
+import hhWave from './assets/projects/nextleap/waveforms.png';
+import pmCopilotImg from './assets/projects/side-quests/pm-copilot.png';
+import sbiAssistantImg from './assets/projects/side-quests/sbi-assistant.png';
+import jobAutomatorImg from './assets/projects/side-quests/job-automator.png';
 import './App.css';
 
 function App() {
   return (
     <main>
       <nav className="navbar">
+        <a href="#hero" className="nav-logo-link">
+          <div className="nav-logo">RB</div>
+        </a>
         <div className="nav-links">
           <a href="#about" className="nav-item active"><User size={16} /> About</a>
           <a href="#projects" className="nav-item"><Briefcase size={16} /> Projects</a>
           <a href="#approach" className="nav-item"><MousePointer2 size={16} /> My Approach</a>
-          <a href="#testimonials" className="nav-item"><MessageSquare size={16} /> Testimonials</a>
           <a href="#world" className="nav-item"><Globe size={16} /> My World</a>
         </div>
         <div className="nav-divider"></div>
         <div className="nav-socials">
-          <a href="#" className="social-link"><Linkedin size={18} /></a>
+          <a href="https://www.linkedin.com/in/bangle-rahul-b33a71236/" target="_blank" rel="noopener noreferrer" className="social-link"><Linkedin size={18} /></a>
           <a href="#" className="social-link"><Mail size={18} /></a>
           <a href="#" className="social-link"><FileText size={18} /></a>
         </div>
       </nav>
 
-      <section className="hero-container">
+      <section id="hero" className="hero-container">
         <motion.div 
           className="hero-content"
           initial={{ opacity: 0, x: -50 }}
@@ -173,14 +191,8 @@ function App() {
               </div>
             </div>
           </div>
-          <div className="project-screenshots">
-            <div className="project-screenshot-wrapper">
-              <img src={mcTaskBoard} alt="Mission Control Task Board" />
-            </div>
-            <div className="project-screenshot-wrapper">
-              <img src={mcStrategyTimeline} alt="Mission Control Strategy Timeline" />
-            </div>
-            <div className="project-screenshot-wrapper">
+          <div className="project-screenshot-featured">
+            <div className="project-screenshot-wrapper large">
               <img src={mcTeamPanel} alt="Mission Control Team Panel" />
             </div>
           </div>
@@ -208,22 +220,42 @@ function App() {
               </div>
               <div className="meta-section">
                 <span className="meta-label">PROBLEM</span>
-                <span className="meta-content">Sprout's 8-step onboarding flow had dark patterns, forced paywalls, and unnecessary friction that killed conversion.</span>
+                <span className="meta-content">Sprout's 30-step onboarding flow had dark patterns, forced paywalls, and unnecessary friction that killed conversion.</span>
               </div>
             </div>
             <div className="meta-column">
               <div className="meta-section">
-                <span className="meta-label">KEY FINDINGS</span>
+                <span className="meta-label">IMPACT</span>
                 <ul className="project-features">
-                  <li>5 dark patterns identified (forced paywall, misleading CTAs, unnecessary steps)</li>
-                  <li>Redesigned signup flow from 8 steps to 4</li>
-                  <li>Before/after impact analysis with annotated screenshots</li>
+                  <li>Identified 7 dark patterns across 30-screen flow</li>
+                  <li><span className="impact-highlight">Redesigned onboarding</span> from 30 screens to 5</li>
+                  <li><span className="impact-highlight">Reduced time-to-value</span> from 20 min to under 2 min</li>
+                  <li><span className="impact-highlight">Proposed freemium model</span> to earn paywall trust</li>
                 </ul>
               </div>
             </div>
           </div>
           
-          <ComparisonCanvas />
+          <div className="annotation-anchor">
+            <ComparisonCanvas />
+            <Annotation 
+              text="31 screens reduced to 8" 
+              direction="right"
+              arrowType="curly"
+              className="anno-sprout-audit"
+            />
+          </div>
+          
+          <div className="project-detail-label">Final Prototype</div>
+          <div className="annotation-anchor">
+            <PhoneMockup />
+            <Annotation 
+              text="High-fidelity prototype" 
+              direction="left"
+              arrowType="simple"
+              className="anno-sprout-proto"
+            />
+          </div>
 
         </motion.div>
 
@@ -238,30 +270,147 @@ function App() {
             <span className="project-tag">PM Fellowship</span>
             <span className="project-status shipped">Completed</span>
           </div>
-          <h3 className="project-title">NextLeap — Structured PM Training</h3>
-          <p className="project-subtitle">Intensive product management fellowship covering PRDs, case studies, SQL analytics, and real-world problem solving under industry mentors.</p>
+          <h3 className="project-title">ChatGPT Voice India — Homework Helper</h3>
+          <p className="project-subtitle">Identified a 50M+ user gap in ChatGPT's India strategy. Designed a voice-first feature for non-English medium parents in Tier 2/3 India.</p>
           
           <div className="project-meta">
             <div className="meta-column">
               <div className="meta-section">
                 <span className="meta-label">ROLE</span>
-                <span className="meta-content">PM Fellow — wrote PRDs, ran data analysis, delivered structured case studies.</span>
+                <span className="meta-content">PM Fellow — research, PRD, wireframes, experiment design.</span>
+              </div>
+              <div className="meta-section">
+                <span className="meta-label">IMPACT</span>
+                <ul className="project-features">
+                  <li><span className="impact-highlight">50-70M unlockable users</span> identified</li>
+                  <li><span className="impact-highlight">83% discoverability gap</span> confirmed via research</li>
+                </ul>
               </div>
             </div>
             <div className="meta-column">
               <div className="meta-section">
                 <span className="meta-label">DELIVERABLES</span>
                 <ul className="project-features">
-                  <li>Product Requirement Documents (PRDs)</li>
-                  <li>SQL-based analytics assignments</li>
-                  <li>Case study presentations</li>
+                  <li>Survey research (n=100)</li>
+                  <li>Full PRD with north star metrics</li>
+                  <li>Wireframes — 12 annotations, 4 screens</li>
+                  <li>ICE-scored prioritization</li>
+                  <li>A/B experiment plan with rollback criteria</li>
                 </ul>
               </div>
             </div>
           </div>
+
+          <div className="carousel-wrapper" style={{ position: 'relative' }}>
+            <ProjectCarousel images={[nlHome, nlVoice, nlResult, hhScan, hhWave]} />
+            <Annotation 
+              text="83% discoverability gap confirmed via research" 
+              direction="up"
+              arrowType="loop"
+              className="annotation-nextleap-gap"
+              style={{ bottom: '-60px', right: '10%' }}
+            />
+          </div>
         </motion.div>
 
       </section>
+
+      {/* Side Quests Section */}
+      <section className="side-quests-section">
+        <h2 className="side-quests-title">and a few other side quests</h2>
+        <div className="side-quests-grid">
+          <SideQuestCard 
+            index={0}
+            icon={Bot}
+            title="PM Copilot"
+            category="AI-Enhanced Product Workflows"
+            description="The intelligent partner built specifically for product management workflows. Save 10+ hours weekly with specialized AI agents."
+            image={pmCopilotImg}
+          />
+          <SideQuestCard 
+            index={1}
+            icon={Zap}
+            title="Job Automator"
+            category="Application Ops Dashboard"
+            description="A trusted-source PM job pipeline with bulk import, review-first routing, and final approval stages for high-volume applications."
+            image={jobAutomatorImg}
+          />
+        </div>
+      </section>
+      
+      {/* My Approach Section */}
+      <section id="approach" className="approach-section">
+        <div className="approach-container">
+          <div className="approach-left">
+            <div className="approach-sticky-content">
+              <h2 className="approach-title">my<br /><span>approach</span></h2>
+              <p className="approach-subtext">
+                4 years of ops + sales taught me one thing — users don't care about features. They care about outcomes.
+              </p>
+              <div className="approach-cta">
+                <a href="mailto:bangleahul1@gmail.com" className="btn-secondary">
+                  <Mail size={20} /> Let's Work Together
+                </a>
+                <a href="/Rahul_Bangle_APM_Resume_v4.pdf" target="_blank" rel="noopener noreferrer" className="btn-primary">
+                  <Download size={20} /> Download Resume
+                </a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="approach-right">
+            {[
+              {
+                title: "Start with the Why, not the What",
+                highlight: "Why",
+                description: "I never jump to solutions. First I ask — is this the right problem? For whom? Why now?"
+              },
+              {
+                title: "Survive Ambiguity",
+                highlight: "Ambiguity",
+                description: "I break messy, undefined problems into actionable steps and ship something real."
+              },
+              {
+                title: "Ship Fast, Learn Faster",
+                highlight: "Ship Fast",
+                description: "Ugly prototypes beat perfect ideas stuck in docs. Test → learn → iterate. Repeat."
+              },
+              {
+                title: "Every question needs a user benefit",
+                highlight: "user benefit",
+                description: "If a feature can't answer \"what does the user get?\" — it doesn't ship."
+              },
+              {
+                title: "Decisions over opinions",
+                highlight: "opinions",
+                description: "I prioritize with data, defend with reasoning, and know when to kill a feature I personally love."
+              }
+            ].map((step, i) => (
+              <motion.div 
+                key={i}
+                className="approach-card"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+              >
+                <h3 className="approach-card-title">
+                  {step.title.split(step.highlight).map((part, index, array) => (
+                    <span key={index}>
+                      {part}
+                      {index < array.length - 1 && <span className="highlight-box">{step.highlight}</span>}
+                    </span>
+                  ))}
+                </h3>
+                <p className="approach-card-description">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <MyWorldCanvas />
+      <ContactWidget />
 
     </main>
   );

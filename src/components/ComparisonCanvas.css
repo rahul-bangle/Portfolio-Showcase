@@ -1,14 +1,21 @@
 .comparison-canvas {
   position: relative;
   width: 100%;
-  height: 500px;
+  height: 600px;
   background: #f8f9fa;
   border-radius: 16px;
   overflow: hidden;
-  cursor: ew-resize;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   margin-top: 2rem;
   border: 1px solid rgba(0,0,0,0.05);
+  user-select: none; /* Prevent blue selection highlight */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.comparison-canvas.is-dragging {
+  cursor: ew-resize !important;
 }
 
 .layer-before, .layer-after {
@@ -21,37 +28,70 @@
 }
 
 .layer-before {
-  background: #eaeaea;
+  background: #f0f0f0;
+  z-index: 1;
 }
 
 .layer-after {
-  background: #f5f5f5;
+  background: #ffffff;
+  z-index: 2;
   /* clip-path is applied inline via React state */
   border-left: 2px solid #ff4d00;
 }
 
-/* Messy desk container for the 31 original images */
-.messy-desk-container {
-  position: relative;
+.before-grid-container {
   width: 100%;
   height: 100%;
+  overflow: hidden; /* No scrolling needed now */
+  padding: 4rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.messy-screen {
-  position: absolute;
-  width: 100px;
-  height: 210px;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+/* Custom scrollbar for Webkit */
+.before-grid-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.before-grid-container::-webkit-scrollbar-thumb {
+  background: #ff4d00;
+  border-radius: 4px;
+}
+
+.audit-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr); /* 8 columns to fit more */
+  gap: 0.6rem;
+  width: 100%;
+  max-height: 90%;
+}
+
+.audit-screen {
+  width: 100%;
+  aspect-ratio: 9/18;
+  border-radius: 4px; /* Tiny cards need sharper corners */
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
   object-fit: cover;
-  border: 1px solid rgba(0,0,0,0.1);
+  border: 1px solid rgba(0,0,0,0.03);
   background: white;
-  transition: transform 0.3s ease;
+  transition: all 0.2s ease;
 }
 
-.messy-screen:hover {
-  transform: scale(1.05) !important;
-  z-index: 1000 !important;
+.audit-screen:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 10;
+}
+
+.audit-screen.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  color: #666;
+  font-weight: 600;
+  text-transform: uppercase;
 }
 
 /* Order track for the 8 redesign images */
@@ -67,7 +107,7 @@
 }
 
 .order-screen {
-  width: 15%;
+  width: 20%;
   flex-shrink: 0;
   height: 75%;
   border-radius: 8px;
@@ -95,9 +135,10 @@
   width: 4px;
   background-color: #ff4d00;
   transform: translateX(-50%);
-  pointer-events: none;
   z-index: 200;
   box-shadow: 0 0 10px rgba(255, 77, 0, 0.5);
+  cursor: ew-resize; /* Keep hint on handle */
+  pointer-events: auto; /* Handle needs pointer events */
 }
 
 .slider-button {
@@ -105,8 +146,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
   background-color: #ff4d00;
   border-radius: 50%;
   display: flex;
@@ -114,6 +155,66 @@
   justify-content: center;
   color: white;
   font-weight: bold;
-  box-shadow: 0 4px 12px rgba(255, 77, 0, 0.3);
-  font-size: 14px;
+  box-shadow: 0 4px 15px rgba(255, 77, 0, 0.5);
+  font-size: 18px;
+  border: 3px solid #ffffff;
+  transition: all 0.2s ease;
+}
+
+.slider-handle:hover .slider-button {
+  transform: translate(-50%, -50%) scale(1.1);
+  background-color: #ff5e1a;
+}
+
+.comparison-label {
+  position: absolute;
+  top: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  z-index: 100;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.before-label {
+  left: 2rem;
+  background: rgba(255, 255, 255, 0.95);
+  color: #1a1a1a;
+  border: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.after-label {
+  right: 2rem;
+  background: #1a1a1a;
+  color: #ffffff;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+@media (max-width: 768px) {
+  .comparison-canvas {
+    height: 450px;
+  }
+  
+  .comparison-label {
+    top: 1rem;
+    font-size: 0.7rem;
+    padding: 0.4rem 0.8rem;
+  }
+  
+  .before-label { left: 1rem; }
+  .after-label { right: 1rem; }
+  
+  .messy-screen {
+    width: 80px;
+    height: 160px;
+  }
+  
+  .order-screen {
+    height: 60%;
+  }
 }

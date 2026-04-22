@@ -1,0 +1,41 @@
+.annotation-container {
+  position: absolute;
+  pointer-events: none;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  min-width: 150px;
+}
+
+.annotation-text {
+  font-family: 'Caveat', cursive;
+  color: #22c55e;
+  font-size: 1.8rem;
+  line-height: 1.1;
+  text-align: center;
+  white-space: pre-wrap;
+  max-width: 200px;
+  transform: rotate(-2deg);
+  text-shadow: 0 0 15px rgba(34, 197, 94, 0.3);
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.annotation-arrow-box {
+  width: 80px;
+  height: 80px;
+  margin-top: -10px;
+}
+
+.annotation-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+/* Positioning helpers */
+.annotation-top-left { transform: translate(-100%, -100%); }
+.annotation-top-right { transform: translate(0, -100%); }
+.annotation-bottom-left { transform: translate(-100%, 0); }
+.annotation-bottom-right { transform: translate(0, 0); }

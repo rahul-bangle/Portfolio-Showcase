@@ -1,0 +1,121 @@
+.carousel-3d-scene {
+  position: relative;
+  width: 100%;
+  height: 650px;
+  perspective: 2000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: 4rem;
+  cursor: grab;
+  user-select: none;
+  background: radial-gradient(circle at center, rgba(27, 183, 250, 0.05) 0%, transparent 70%);
+}
+
+.carousel-3d-scene:active {
+  cursor: grabbing;
+}
+
+.carousel-3d-stage {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-style: preserve-3d;
+}
+
+.carousel-3d-item {
+  position: absolute;
+  width: 280px;
+  height: 500px;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.phone-mockup-mini {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #080808;
+  border-radius: 44px;
+  border: 10px solid #1a1a1a;
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.5),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  overflow: hidden;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.phone-screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Central Light Beam */
+.light-beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, #1bb7fa, #00eaff, #1bb7fa, transparent);
+  box-shadow: 0 0 30px rgba(27, 183, 250, 0.8);
+  opacity: 0.8;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.light-beam::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(27, 183, 250, 0.2) 0%, transparent 70%);
+  filter: blur(20px);
+}
+
+/* Reflection Effect */
+.phone-reflection {
+  position: absolute;
+  top: 102%;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  transform: scaleY(-1);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.2) 0%, transparent 80%);
+  opacity: 0.3;
+  pointer-events: none;
+}
+
+.phone-reflection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(4px);
+}
+
+/* Floor Shadow */
+.carousel-3d-scene::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.4), transparent);
+  pointer-events: none;
+}

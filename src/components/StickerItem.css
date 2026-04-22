@@ -1,0 +1,101 @@
+.sticker-item-wrapper {
+  position: absolute;
+  z-index: 1;
+}
+
+.sticker-interaction-zone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+.sticker-image-container {
+  width: clamp(100px, 15vw, 180px);
+  height: auto;
+  filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 768px) {
+  .sticker-wrapper {
+    width: 140px;
+  }
+  
+  .sticker-label {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    bottom: -15px;
+  }
+  
+  .tooltip-bubble {
+    width: 160px;
+    padding: 12px;
+    font-size: 0.8rem;
+    bottom: calc(100% + 25px);
+  }
+}
+
+.sticker-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sticker-label {
+  margin-top: 15px;
+  padding: 8px 16px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.sticker-label.active {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.2);
+}
+
+.sticker-tooltip {
+  position: absolute;
+  bottom: calc(100% + 20px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 200px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 100;
+  pointer-events: none;
+}
+
+.tooltip-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: #1a1a1a;
+  line-height: 1.4;
+  text-align: center;
+}
+
+.tooltip-arrow {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 10px solid rgba(255, 255, 255, 0.9);
+}
