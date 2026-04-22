@@ -1,0 +1,25 @@
+index.html
+MASTER_CONTEXT.md
+README.md
+public\favicon.svg
+public\icons.svg
+ref_images\about section.PNG
+ref_images\avatar.png
+ref_images\craetive component 4.PNG
+ref_images\crative component 1.PNG
+ref_images\creative component2.PNG
+ref_images\crerative component3.PNG
+ref_images\landing page 1.PNG
+ref_images\myapproich page 2 scroll enabled.PNG
+ref_images\myapproich page scroll enabled.PNG
+ref_images\myworld.PNG
+ref_images\myworld2.PNG
+ref_images\myworld3.PNG
+ref_images\projectpage1.PNG
+ref_images\projectpage2.PNG
+ref_images\projectpage3.PNG
+ref_images\projectpage5.PNG
+src\assets\avatar.png
+src\assets\hero.png
+src\assets\react.svg
+src\assets\vite.svg
