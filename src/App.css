@@ -487,7 +487,7 @@ html {
 
 /* Projects Showcase Section */
 .projects-container {
-  padding: 8rem 5%;
+  padding: 8rem 5% 2rem 5%;
   background: #ffffff;
 }
 
@@ -509,7 +509,7 @@ html {
   background: #ffffff;
   border-radius: 32px;
   padding: 4rem 5rem;
-  margin: 0 auto 6rem auto;
+  margin: 0 auto 3rem auto;
   max-width: 1300px;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.03);
@@ -761,7 +761,7 @@ html {
 
 /* Side Quests Section */
 .side-quests-section {
-  padding: 120px 4%;
+  padding: 40px 4% 120px 4%;
   max-width: 1800px;
   margin: 0 auto;
   overflow: hidden;
