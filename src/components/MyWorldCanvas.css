@@ -1,5 +1,5 @@
 .my-world-section {
-  padding: 100px 0;
+  padding: 0;
   background-color: #FFF9F0;
   overflow: hidden;
   position: relative;
@@ -9,9 +9,13 @@
 }
 
 .section-header {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  margin-bottom: 50px;
-  z-index: 10;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .section-tag {
@@ -26,10 +30,16 @@
 
 .section-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 3.5rem;
+  font-size: 5rem;
   font-weight: 800;
   color: #1a1a1a;
   margin: 0;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+
+.title-accent {
+  color: #5cb338;
 }
 
 .section-subtitle {
@@ -42,10 +52,11 @@
 
 .section-hint {
   font-family: 'Inter', sans-serif;
-  color: #2563eb;
+  color: #1a1a1a;
   font-size: 1rem;
-  margin-top: 10px;
+  margin-top: 15px;
   font-weight: 500;
+  opacity: 0.8;
 }
 
 .canvas-viewport {
