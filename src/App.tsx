@@ -44,7 +44,7 @@ function App() {
           <a href="#about" className="nav-item active"><User size={16} /> About</a>
           <a href="#projects" className="nav-item"><Briefcase size={16} /> Projects</a>
           <a href="#approach" className="nav-item"><MousePointer2 size={16} /> My Approach</a>
-          <a href="#world" className="nav-item"><Globe size={16} /> My World</a>
+          <a href="#my-world" className="nav-item"><Globe size={16} /> My World</a>
         </div>
         <div className="nav-divider"></div>
         <div className="nav-socials">
