@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import './ComparisonCanvas.css';
 
 // Use Vite's glob import to get all images dynamically
-const originalImages = import.meta.glob('../assets/projects/sprout/original/*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, as: 'url' });
-const redesignImages = import.meta.glob('../assets/projects/sprout/redesign/*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, as: 'url' });
-const compositeImages = import.meta.glob('../assets/projects/sprout/redesign-composite.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, as: 'url' });
+const originalImages = import.meta.glob('../assets/projects/sprout/original/*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, query: '?url', import: 'default' });
+const redesignImages = import.meta.glob('../assets/projects/sprout/redesign/*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, query: '?url', import: 'default' });
+const compositeImages = import.meta.glob('../assets/projects/sprout/redesign-composite.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, query: '?url', import: 'default' });
 
 const originalUrls = Object.values(originalImages).map(module => module as string);
 const redesignUrls = Object.values(redesignImages).map(module => module as string);

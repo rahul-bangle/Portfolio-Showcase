@@ -6,7 +6,7 @@ import StickerItem from './StickerItem';
 const stickers = [
   {
     id: 'rahul',
-    src: '/my-world/rahul_sticker.png',
+    src: './my-world/rahul_sticker.png',
     label: "That's Me!",
     tooltip: "PM by day, world explorer by... well, also by day.",
     x: '50%',
@@ -15,7 +15,7 @@ const stickers = [
   },
   {
     id: 'bridge',
-    src: '/my-world/bridge.png',
+    src: './my-world/bridge.png',
     label: "Where she said yes!",
     tooltip: "A memory etched in iron and stone at Biderfort.",
     x: '68%',
@@ -24,7 +24,7 @@ const stickers = [
   },
   {
     id: 'bgmi',
-    src: '/my-world/bgmi.png',
+    src: './my-world/bgmi.png',
     label: "BGMI",
     tooltip: "Winner Winner Chicken Dinner! (Sometimes)",
     x: '30%',
@@ -33,7 +33,7 @@ const stickers = [
   },
   {
     id: 'biryani',
-    src: '/my-world/biryani.png',
+    src: './my-world/biryani.png',
     label: "Biryani",
     tooltip: "If you're from Swiggy or Zomato, please send me some!",
     x: '55%',
@@ -42,7 +42,7 @@ const stickers = [
   },
   {
     id: 'chai',
-    src: '/my-world/chai.png',
+    src: './my-world/chai.png',
     label: "Chai",
     tooltip: "The Jethalal in me cannot resist Chai.",
     x: '35%',
@@ -51,7 +51,7 @@ const stickers = [
   },
   {
     id: 'kishore',
-    src: '/my-world/kishore_kumar.png',
+    src: './my-world/kishore_kumar.png',
     label: "Kishore Kumar",
     tooltip: "The voice that makes everything better. Timeless melodies for every mood.",
     x: '78%',
@@ -60,7 +60,7 @@ const stickers = [
   },
   {
     id: 'samsung',
-    src: '/my-world/samsung_s26.png',
+    src: './my-world/samsung_s26.png',
     label: "Samsung S26 Ultra",
     tooltip: "Currently plotting an upgrade. The grind continues.",
     x: '22%',
