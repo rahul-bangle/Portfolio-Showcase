@@ -62,7 +62,7 @@ const stickers = [
     id: 'samsung',
     src: '/my-world/samsung_s26.png',
     label: "Samsung S26 Ultra",
-    tooltip: "The dream setup. One day, this will be the one capturing my world.",
+    tooltip: "Currently plotting an upgrade. The grind continues.",
     x: '22%',
     y: '42%',
     rotate: 5
