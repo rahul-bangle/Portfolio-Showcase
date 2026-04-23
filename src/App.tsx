@@ -9,7 +9,10 @@ import {
   Linkedin,
   Download,
   Bot,
-  Zap
+  Zap,
+  Cpu,
+  Layers,
+  Search
 } from 'lucide-react';
 import avatar from './assets/avatar.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
@@ -113,6 +116,89 @@ function App() {
             <circle cx="50" cy="50" r="10" />
           </svg>
         </div>
+      </section>
+
+      <section className="stack-section">
+        <div className="stack-intro">
+          <div className="section-label">The Engine</div>
+          <h2 className="stack-title">My Agentic <span>PM Stack</span></h2>
+        </div>
+
+        <motion.div 
+          className="stack-grid"
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={{
+            hidden: { opacity: 0 },
+            show: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15
+              }
+            }
+          }}
+        >
+          <motion.div 
+            className="stack-card"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+            }}
+          >
+            <div className="stack-icon-wrapper">
+              <Search size={28} />
+            </div>
+            <h3>Discovery & Strategy</h3>
+            <p>Identifying unarticulated needs and mapping "Jobs-to-be-Done" to turn ambiguous chaos into high-fidelity roadmaps.</p>
+            <div className="stack-tools">
+              <span className="tool-tag">Claude</span>
+              <span className="tool-tag">Notion</span>
+              <span className="tool-tag">JTBD Mapping</span>
+              <span className="tool-tag">ICE-Scoring</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="stack-card"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+            }}
+          >
+            <div className="stack-icon-wrapper">
+              <Cpu size={28} />
+            </div>
+            <h3>Agentic Orchestration</h3>
+            <p>Building autonomous, self-correcting systems and multi-agent workflows to eliminate operational friction and manual overhead.</p>
+            <div className="stack-tools">
+              <span className="tool-tag">n8n</span>
+              <span className="tool-tag">OpenClaw</span>
+              <span className="tool-tag">Multi-Agent Flows</span>
+              <span className="tool-tag">Automation</span>
+            </div>
+          </motion.div>
+
+          <motion.div 
+            className="stack-card"
+            variants={{
+              hidden: { opacity: 0, y: 30 },
+              show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100 } }
+            }}
+          >
+            <div className="stack-icon-wrapper">
+              <Layers size={28} />
+            </div>
+            <h3>Technical Delivery</h3>
+            <p>Bridging the gap between LLM capabilities and user value with scalable, agent-first infrastructure and API-driven logic.</p>
+            <div className="stack-tools">
+              <span className="tool-tag">AntiGravity</span>
+              <span className="tool-tag">FastAPI</span>
+              <span className="tool-tag">SQL</span>
+              <span className="tool-tag">System Design</span>
+            </div>
+          </motion.div>
+        </motion.div>
       </section>
 
       <section className="stats-cta-container">
@@ -228,7 +314,39 @@ function App() {
                   <li><span className="impact-highlight">Reduced time-to-value</span> from 20 min to under 2 min</li>
                   <li><span className="impact-highlight">Proposed freemium model</span> to earn paywall trust</li>
                 </ul>
-              </div>
+                <a
+                  href="https://drive.google.com/file/d/1xJNK3Y7Ldv0ISh_qslWwGEwMvZQ93Z9F/view"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="teardown-button"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.8rem',
+                    marginTop: '2.5rem',
+                    backgroundColor: '#ff4d00',
+                    color: '#ffffff',
+                    fontWeight: '700',
+                    fontSize: '1.2rem',
+                    padding: '1rem 2rem',
+                    borderRadius: '12px',
+                    textDecoration: 'none',
+                    boxShadow: '0 10px 20px rgba(255, 77, 0, 0.2)',
+                    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(255, 77, 0, 0.3)';
+                    e.currentTarget.style.backgroundColor = '#e64500';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(255, 77, 0, 0.2)';
+                    e.currentTarget.style.backgroundColor = '#ff4d00';
+                  }}
+                >
+                  View Full Teardown <Zap size={22} fill="white" />
+                </a>              </div>
             </div>
           </div>
           
@@ -319,16 +437,22 @@ function App() {
             index={0}
             icon={Bot}
             title="PM Copilot"
-            category="AI-Enhanced Product Workflows"
-            description="The intelligent partner built specifically for product management workflows. Save 10+ hours weekly with specialized AI agents."
+            category="Operational Efficiency"
+            ahaMoment="Too much time was going into rewriting docs instead of actually thinking about the product."
+            metric="5-7 hrs/week saved"
+            description="A modular agent system built to eliminate 'Cold-Start' friction. Features a PRD Drafting Agent that transforms raw ideas into structured, technical specs instantly."
+            tags={["LLM Orchestration", "Prompt Eng", "Product Ops"]}
             image={pmCopilotImg}
           />
           <SideQuestCard 
             index={1}
             icon={Zap}
             title="Job Automator"
-            category="Application Ops Dashboard"
-            description="A trusted-source PM job pipeline with bulk import, review-first routing, and final approval stages for high-volume applications."
+            category="Funnel Optimization"
+            ahaMoment="Tracking applications manually was messy, repetitive, and I kept losing track of high-quality roles."
+            metric="6-8 hrs/week saved"
+            description="Engineered an automated ingestion engine with 'Match Scoring' to solve decision fatigue. Uses Review-First routing to prioritize high-intent roles based on relevance."
+            tags={["Automation", "Scraping Logic", "React/Supabase"]}
             image={jobAutomatorImg}
           />
         </div>
@@ -344,7 +468,7 @@ function App() {
                 4 years of ops + sales taught me one thing — users don't care about features. They care about outcomes.
               </p>
               <div className="approach-cta">
-                <a href="mailto:bangleahul1@gmail.com" className="btn-secondary">
+                <a href="mailto:bangleahul1@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Rahul,%0A%0AI%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20potential%20role%20with%20our%20team!" className="btn-secondary">
                   <Mail size={20} /> Let's Work Together
                 </a>
                 <a href="/Rahul_Bangle_APM_Resume_v4.pdf" target="_blank" rel="noopener noreferrer" className="btn-primary">

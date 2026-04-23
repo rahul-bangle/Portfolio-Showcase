@@ -7,6 +7,36 @@ import img2 from '../assets/projects/sprout/details/img2.png';
 import img3 from '../assets/projects/sprout/details/img3.png';
 
 export const PhoneMockup: React.FC = () => {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+  const [hasEntered, setHasEntered] = React.useState(false);
+
+  const attemptPlay = async () => {
+    if (videoRef.current) {
+      try {
+        videoRef.current.muted = true;
+        videoRef.current.playsInline = true;
+        await videoRef.current.play();
+      } catch (err) {
+        // Silently fail as it will retry on click
+      }
+    }
+  };
+
+  React.useEffect(() => {
+    if (hasEntered) {
+      attemptPlay();
+    }
+  }, [hasEntered]);
+
+  // Global click listener as a fail-safe
+  React.useEffect(() => {
+    const handleGlobalClick = () => {
+      attemptPlay();
+    };
+    window.addEventListener('click', handleGlobalClick);
+    return () => window.removeEventListener('click', handleGlobalClick);
+  }, []);
+
   return (
     <div className="showcase-dashboard-container">
       <div className="showcase-main-content">
@@ -16,6 +46,7 @@ export const PhoneMockup: React.FC = () => {
           initial={{ scale: 0.9, opacity: 0, y: 30 }}
           whileInView={{ scale: 1, opacity: 1, y: 0 }}
           viewport={{ once: false, amount: 0.2 }}
+          onAnimationComplete={() => setHasEntered(true)}
           transition={{ type: "spring", stiffness: 100, damping: 20, delay: 0.1 }}
         >
           <div className="card-header">
@@ -26,15 +57,24 @@ export const PhoneMockup: React.FC = () => {
             <img src={phoneFrame} alt="Phone Frame" className="phone-frame-img" />
             <div className="phone-screen-content">
               <video 
+                ref={videoRef}
                 className="redesign-video"
-                autoPlay 
+                src={redesignVideo}
                 loop 
                 muted 
                 playsInline
+                autoPlay
+                preload="auto"
+                onContextMenu={(e) => e.preventDefault()}
+                style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                onLoadedData={() => {
+                  if (hasEntered) attemptPlay();
+                }}
               >
-                <source src={redesignVideo} type="video/mp4" />
+                Your browser does not support the video tag.
               </video>
             </div>
+            <div className="phone-glare"></div>
           </div>
         </motion.div>
 

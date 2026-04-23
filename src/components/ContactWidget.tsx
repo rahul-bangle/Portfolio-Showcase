@@ -51,7 +51,7 @@ export const ContactWidget = () => {
                 👋
               </motion.span>
             </div>
-            <a href="mailto:bangleahul1@gmail.com" className="widget-link">
+            <a href="mailto:bangleahul1@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Rahul,%0A%0AI%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20potential%20role%20with%20our%20team!" className="widget-link">
               Let's Work Together
             </a>
           </div>

@@ -7,6 +7,9 @@ interface SideQuestCardProps {
   title: string;
   category: string;
   description: string;
+  ahaMoment: string;
+  metric: string;
+  tags: string[];
   image: string;
   index: number;
 }
@@ -16,6 +19,9 @@ export const SideQuestCard: React.FC<SideQuestCardProps> = ({
   title, 
   category, 
   description, 
+  ahaMoment,
+  metric,
+  tags,
   image,
   index 
 }) => {
@@ -28,17 +34,34 @@ export const SideQuestCard: React.FC<SideQuestCardProps> = ({
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
       <div className="side-quest-header">
-        <div className="side-quest-icon">
-          <Icon size={24} className="text-primary" />
+        <div className="side-quest-header-left">
+          <div className="side-quest-icon">
+            <Icon size={24} className="text-primary" />
+          </div>
+          <div className="side-quest-info">
+            <h4>{title}</h4>
+            <p>{category}</p>
+          </div>
         </div>
-        <div className="side-quest-info">
-          <h4>{title}</h4>
-          <p>{category}</p>
+        <div className="side-quest-metric">
+          {metric}
         </div>
       </div>
+
+      <div className="side-quest-aha">
+        "{ahaMoment}"
+      </div>
+
       <p className="side-quest-description">
         {description}
       </p>
+
+      <div className="side-quest-tags">
+        {tags.map((tag, i) => (
+          <span key={i} className="side-quest-tag">{tag}</span>
+        ))}
+      </div>
+
       <div className="side-quest-visual">
         <img src={image} alt={title} />
       </div>

@@ -11,6 +11,17 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  /* Fluid Typography */
+  --ft-hero-title: clamp(2.5rem, 8vw, 3.8rem);
+  --ft-section-title: clamp(2.2rem, 7vw, 4.5rem);
+  --ft-card-title: clamp(1.5rem, 5vw, 2.8rem);
+  --ft-body-large: clamp(1.1rem, 3vw, 1.8rem);
+  --ft-body-base: clamp(1rem, 2vw, 1.2rem);
+  
+  /* Responsive Spacing */
+  --spacing-section: clamp(4rem, 10vw, 8rem);
+  --container-padding: clamp(1.5rem, 5vw, 8%);
 }
 
 body {
