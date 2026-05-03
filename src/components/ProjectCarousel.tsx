@@ -21,7 +21,8 @@ export const ProjectCarousel: React.FC<ProjectCarouselProps> = ({ images }) => {
 
     const carousel = carouselRef.current;
     const items = Array.from(carousel.children) as HTMLElement[];
-    const spacing = 280; // Distance between items when flat
+    const isMobile = window.innerWidth < 768;
+    const spacing = isMobile ? 200 : 280; // Smaller spacing on mobile
 
     const updateItems = (x: number) => {
       const centerXOffset = (items.length - 1) * spacing / 2;

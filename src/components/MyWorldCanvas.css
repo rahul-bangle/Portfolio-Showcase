@@ -30,7 +30,7 @@
 
 .section-title {
   font-family: 'Outfit', sans-serif;
-  font-size: 5rem;
+  font-size: var(--ft-section-title);
   font-weight: 800;
   color: #1a1a1a;
   margin: 0;
@@ -45,7 +45,7 @@
 .section-subtitle {
   font-family: 'Inter', sans-serif;
   color: #1a1a1a;
-  font-size: 1.4rem;
+  font-size: clamp(1rem, 3vw, 1.4rem);
   margin-top: 15px;
   font-weight: 400;
 }
@@ -53,17 +53,17 @@
 .section-hint {
   font-family: 'Inter', sans-serif;
   color: #1a1a1a;
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-top: 15px;
   font-weight: 500;
   opacity: 0.8;
 }
 
 .canvas-viewport {
-  width: 90vw;
-  height: 85vh;
+  width: 95vw;
+  height: clamp(50vh, 70vw, 85vh);
   background: transparent;
-  border-radius: 40px;
+  border-radius: 30px;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.05);
   position: relative;
@@ -75,7 +75,7 @@
   width: 150vw;
   height: 140vh;
   position: absolute;
-  top: -15vh;
+  top: -10vh;
   left: -25vw;
   background-color: transparent;
 }
@@ -102,12 +102,18 @@
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.5rem;
+  .section-header {
+    top: 15%;
+    width: 90%;
   }
-  
+
   .canvas-viewport {
-    height: 60vh;
-    border-radius: 30px;
+    border-radius: 20px;
+  }
+
+  .canvas-container {
+    width: 300vw; /* Larger scroll area for mobile */
+    height: 200vh;
+    left: -100vw;
   }
 }

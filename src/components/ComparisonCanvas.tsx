@@ -6,8 +6,12 @@ const originalImages = import.meta.glob('../assets/projects/sprout/original/*.{p
 const redesignImages = import.meta.glob('../assets/projects/sprout/redesign/*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, query: '?url', import: 'default' });
 const compositeImages = import.meta.glob('../assets/projects/sprout/redesign-composite.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, query: '?url', import: 'default' });
 
-const originalUrls = Object.values(originalImages).map(module => module as string);
-const redesignUrls = Object.values(redesignImages).map(module => module as string);
+const originalUrls = Object.values(originalImages)
+  .map(module => module as string)
+  .filter(url => !url.toLowerCase().includes('rahul'));
+const redesignUrls = Object.values(redesignImages)
+  .map(module => module as string)
+  .filter(url => !url.toLowerCase().includes('rahul'));
 const compositeUrls = Object.values(compositeImages).map(module => module as string);
 const compositeImage = compositeUrls.length > 0 ? compositeUrls[0] : null;
 

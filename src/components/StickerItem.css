@@ -12,27 +12,26 @@
 }
 
 .sticker-image-container {
-  width: clamp(100px, 15vw, 180px);
+  width: clamp(80px, 20vw, 180px);
   height: auto;
   filter: drop-shadow(0 10px 15px rgba(0, 0, 0, 0.1));
 }
 
 @media (max-width: 768px) {
-  .sticker-wrapper {
-    width: 140px;
-  }
-  
   .sticker-label {
     padding: 6px 12px;
     font-size: 0.75rem;
-    bottom: -15px;
+    margin-top: 10px;
   }
   
-  .tooltip-bubble {
+  .sticker-tooltip {
     width: 160px;
     padding: 12px;
+    bottom: calc(100% + 15px);
+  }
+
+  .tooltip-content {
     font-size: 0.8rem;
-    bottom: calc(100% + 25px);
   }
 }
 

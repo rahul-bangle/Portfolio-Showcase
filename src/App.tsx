@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { 
   User, 
   Briefcase, 
@@ -33,6 +34,34 @@ import jobAutomatorImg from './assets/projects/side-quests/job-automator.png';
 import './App.css';
 
 function App() {
+  const [activeSection, setActiveSection] = useState('about');
+
+  useEffect(() => {
+    const sections = ['hero', 'about', 'projects', 'approach', 'my-world'];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -70% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    
+    sections.forEach(id => {
+      const element = document.getElementById(id);
+      if (element) observer.observe(element);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <main>
       <nav className="navbar">
@@ -40,10 +69,10 @@ function App() {
           <div className="nav-logo">RB</div>
         </a>
         <div className="nav-links">
-          <a href="#about" className="nav-item active"><User size={16} /> About</a>
-          <a href="#projects" className="nav-item"><Briefcase size={16} /> Projects</a>
-          <a href="#approach" className="nav-item"><MousePointer2 size={16} /> My Approach</a>
-          <a href="#my-world" className="nav-item"><Globe size={16} /> My World</a>
+          <a href="#about" className={`nav-item ${activeSection === 'about' ? 'active' : ''}`}><User size={16} /> <span>About</span></a>
+          <a href="#projects" className={`nav-item ${activeSection === 'projects' ? 'active' : ''}`}><Briefcase size={16} /> <span>Projects</span></a>
+          <a href="#approach" className={`nav-item ${activeSection === 'approach' ? 'active' : ''}`}><MousePointer2 size={16} /> <span>My Approach</span></a>
+          <a href="#my-world" className={`nav-item ${activeSection === 'my-world' ? 'active' : ''}`}><Globe size={16} /> <span>My World</span></a>
         </div>
         <div className="nav-divider"></div>
         <div className="nav-socials">
@@ -70,7 +99,7 @@ function App() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 1 }}
           >
-            I don't design products. I decide which ones <span className="highlight">deserve to exist</span> — then make sure users actually love them.
+            I don't design products. I decide which ones <span className="highlight">deserve to exist</span> and then make sure users actually love them.
           </motion.p>
         </motion.div>
 
@@ -97,9 +126,9 @@ function App() {
           <div className="about-text">
             I take <span className="highlight-box">messy</span>, <span className="highlight-box">ambiguous problems</span> and turn them into <span className="highlight-box">products that actually ship</span>. 
             <br /><br />
-            I obsess over the <span className="highlight-box">"why"</span> before the <span className="highlight-box">"what"</span> — whether that's an <span className="highlight-box">AI agent</span> deciding user flows, an <span className="highlight-box">automation</span> killing manual grunt work, or a feature that quietly makes someone's day <span className="highlight-box">10x easier</span>.
+            I obsess over the <span className="highlight-box">"why"</span> before the <span className="highlight-box">"what"</span>: whether that's an <span className="highlight-box">AI agent</span> deciding user flows, an <span className="highlight-box">automation</span> killing manual grunt work, or a feature that quietly makes someone's day <span className="highlight-box">10x easier</span>.
             <br /><br />
-            I'm always finding the <span className="highlight-box">balance</span> between what <span className="highlight-box">users need</span>, what the <span className="highlight-box">business wants</span>, and what <span className="highlight-box">engineering</span> will <span className="highlight-box">realistically build</span> — then making sure all three <span className="highlight-box">actually agree</span>
+            I'm always finding the <span className="highlight-box">balance</span> between what <span className="highlight-box">users need</span>, what the <span className="highlight-box">business wants</span>, and what <span className="highlight-box">engineering</span> will <span className="highlight-box">realistically build</span>. My job is making sure all three <span className="highlight-box">actually agree</span>.
           </div>
 
         </motion.div>
@@ -243,14 +272,14 @@ function App() {
             <span className="project-tag">Personal Project</span>
             <span className="project-status shipped">Shipped</span>
           </div>
-          <h3 className="project-title">Mission Control — AI Operations Dashboard</h3>
+          <h3 className="project-title">Mission Control: AI Operations Dashboard</h3>
           <p className="project-subtitle">Built a command center to manage AI agents, automate tasks, and track operations in real-time. Because spreadsheets weren't cutting it.</p>
           
           <div className="project-meta">
             <div className="meta-column">
               <div className="meta-section">
                 <span className="meta-label">ROLE</span>
-                <span className="meta-content">Solo — PM + Builder</span>
+                <span className="meta-content">Solo Builder (PM + Eng)</span>
               </div>
               <div className="meta-section">
                 <span className="meta-label">PROBLEM</span>
@@ -266,8 +295,8 @@ function App() {
                 <span className="meta-label">WHAT I BUILT</span>
                 <ul className="project-features">
                   <li>Kanban task board with AI agent assignment</li>
-                  <li>Strategy Timeline — cron job scheduler with weekly calendar view</li>
-                  <li>Team panel — 11 AI agents tracked live with 99% efficiency score</li>
+                  <li>Strategy Timeline: cron job scheduler with weekly calendar view</li>
+                  <li>Team panel: 11 AI agents tracked live with 99% efficiency score</li>
                   <li>Real-time Supabase sync</li>
                 </ul>
               </div>
@@ -291,14 +320,14 @@ function App() {
             <span className="project-tag">Product Teardown</span>
             <span className="project-status audit">Unprompted Audit</span>
           </div>
-          <h3 className="project-title">Sprout — Onboarding UX Teardown</h3>
-          <p className="project-subtitle">Unprompted product audit — I tore this down because the onboarding was actively hurting users.</p>
+          <h3 className="project-title">Sprout: Onboarding UX Teardown</h3>
+          <p className="project-subtitle">Unprompted product audit. I tore this down because the onboarding was actively hurting users.</p>
           
           <div className="project-meta">
             <div className="meta-column">
               <div className="meta-section">
                 <span className="meta-label">ROLE</span>
-                <span className="meta-content">Self-initiated PM analysis. Full user journey mapping.</span>
+                <span className="meta-content">Self-initiated PM analysis (Full user journey mapping)</span>
               </div>
               <div className="meta-section">
                 <span className="meta-label">PROBLEM</span>
@@ -384,14 +413,14 @@ function App() {
             <span className="project-tag">PM Fellowship</span>
             <span className="project-status shipped">Completed</span>
           </div>
-          <h3 className="project-title">ChatGPT Voice India — Homework Helper</h3>
+          <h3 className="project-title">ChatGPT Voice India: Homework Helper</h3>
           <p className="project-subtitle">Identified a 50M+ user gap in ChatGPT's India strategy. Designed a voice-first feature for non-English medium parents in Tier 2/3 India.</p>
           
           <div className="project-meta">
             <div className="meta-column">
               <div className="meta-section">
                 <span className="meta-label">ROLE</span>
-                <span className="meta-content">PM Fellow — research, PRD, wireframes, experiment design.</span>
+                <span className="meta-content">PM Fellow: research, PRD, wireframes, experiment design.</span>
               </div>
               <div className="meta-section">
                 <span className="meta-label">IMPACT</span>
@@ -407,7 +436,7 @@ function App() {
                 <ul className="project-features">
                   <li>Survey research (n=100)</li>
                   <li>Full PRD with north star metrics</li>
-                  <li>Wireframes — 12 annotations, 4 screens</li>
+                  <li>Wireframes: 12 annotations, 4 screens</li>
                   <li>ICE-scored prioritization</li>
                   <li>A/B experiment plan with rollback criteria</li>
                 </ul>
@@ -465,7 +494,7 @@ function App() {
             <div className="approach-sticky-content">
               <h2 className="approach-title">my<br /><span>approach</span></h2>
               <p className="approach-subtext">
-                4 years of ops + sales taught me one thing — users don't care about features. They care about outcomes.
+                4 years of ops and sales taught me one thing: users don't care about features. They care about outcomes.
               </p>
               <div className="approach-cta">
                 <a href="mailto:bangleahul1@gmail.com?subject=Let's%20Work%20Together&body=Hi%20Rahul,%0A%0AI%20saw%20your%20portfolio%20and%20would%20love%20to%20discuss%20a%20potential%20role%20with%20our%20team!" className="btn-secondary">
@@ -483,7 +512,7 @@ function App() {
               {
                 title: "Start with the Why, not the What",
                 highlight: "Why",
-                description: "I never jump to solutions. First I ask — is this the right problem? For whom? Why now?"
+                description: "I never jump to solutions. First I ask: is this the right problem? For whom? Why now?"
               },
               {
                 title: "Survive Ambiguity",
@@ -493,12 +522,12 @@ function App() {
               {
                 title: "Ship Fast, Learn Faster",
                 highlight: "Ship Fast",
-                description: "Ugly prototypes beat perfect ideas stuck in docs. Test → learn → iterate. Repeat."
+                description: "Ugly prototypes beat perfect ideas stuck in docs. Test, learn, and iterate."
               },
               {
                 title: "Every question needs a user benefit",
                 highlight: "user benefit",
-                description: "If a feature can't answer \"what does the user get?\" — it doesn't ship."
+                description: "If a feature can't answer \"what does the user get?\" it doesn't ship."
               },
               {
                 title: "Decisions over opinions",
@@ -529,7 +558,10 @@ function App() {
         </div>
       </section>
 
-      <MyWorldCanvas />
+      <section id="my-world">
+        <MyWorldCanvas />
+      </section>
+      
       <ContactWidget />
 
     </main>

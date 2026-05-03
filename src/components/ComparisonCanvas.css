@@ -67,6 +67,20 @@
   max-height: 90%;
 }
 
+@media (max-width: 768px) {
+  .audit-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.4rem;
+    max-height: 100%;
+  }
+
+  .before-grid-container {
+    padding: 3rem 1rem 1rem 1rem;
+    align-items: flex-start;
+    overflow-y: auto;
+  }
+}
+
 .audit-screen {
   width: 100%;
   aspect-ratio: 9/18;
@@ -104,6 +118,22 @@
   padding: 0 12px;
   box-sizing: border-box;
   gap: 6px;
+}
+
+@media (max-width: 768px) {
+  .order-track-container {
+    flex-wrap: wrap;
+    padding: 1rem;
+    justify-content: center;
+    overflow-y: auto;
+    gap: 10px;
+  }
+
+  .order-screen {
+    width: 28% !important;
+    height: auto !important;
+    aspect-ratio: 9/16;
+  }
 }
 
 .order-screen {

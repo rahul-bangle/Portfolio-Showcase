@@ -189,13 +189,14 @@ html {
 }
 
 .highlight-box {
-  background-color: #0055ff;
-  color: #ffffff;
-  padding: 0.1rem 0.8rem;
-  border-radius: 12px;
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 0.1rem 0.6rem;
+  border-radius: 8px;
   display: inline-block;
-  margin: 0.2rem 0;
-  line-height: 1.1;
+  margin: 0.1rem 0;
+  line-height: 1.2;
+  font-weight: 600;
 }
 
 .doodle-left {
@@ -334,19 +335,24 @@ html {
 
 @media (max-width: 768px) {
   .navbar {
-    top: 1rem;
-    padding: 0.4rem 0.6rem;
+    top: auto;
+    bottom: 1.5rem;
+    padding: 0.4rem;
   }
 
   .nav-item {
-    padding: 0.5rem 0.8rem;
+    padding: 0.8rem;
     font-size: 0.75rem;
-    gap: 0.3rem;
+    gap: 0;
+  }
+
+  .nav-item span {
+    display: none;
   }
 
   .nav-item svg {
-    width: 14px;
-    height: 14px;
+    width: 20px;
+    height: 20px;
   }
 
   .nav-socials,
@@ -1031,7 +1037,7 @@ html {
 }
 
 .approach-title span {
-  color: #0055ff;
+  color: #3b82f6;
 }
 
 .approach-subtext {
@@ -1084,10 +1090,10 @@ html {
 }
 
 .approach-card-title .highlight-box {
-  background-color: #0055ff;
-  color: #ffffff;
-  padding: 0.3rem 1rem;
-  border-radius: 12px;
+  background-color: rgba(59, 130, 246, 0.1);
+  color: #3b82f6;
+  padding: 0.3rem 0.8rem;
+  border-radius: 10px;
   font-size: clamp(1.3rem, 3vw, 1.9rem);
   display: inline-flex;
   align-items: center;
@@ -1142,6 +1148,16 @@ html {
   .approach-card {
     padding: 2.5rem;
     border-radius: 24px;
+  }
+  
+  .approach-card-title {
+    font-size: 1.8rem;
+  }
+  
+  .approach-card-title .highlight-box {
+    font-size: 1.6rem;
+  }
+} border-radius: 24px;
   }
   
   .approach-card-title {
