@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   User, 
   Briefcase, 
@@ -13,7 +14,8 @@ import {
   Zap,
   Cpu,
   Layers,
-  Search
+  Search,
+  ArrowRight
 } from 'lucide-react';
 import avatar from './assets/avatar.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
@@ -24,6 +26,7 @@ import { Annotation } from './components/Annotation';
 import { SideQuestCard } from './components/SideQuestCard';
 import MyWorldCanvas from './components/MyWorldCanvas';
 import { ContactWidget } from './components/ContactWidget';
+import { ProjectPage } from './components/ProjectPage';
 import nlHome from './assets/projects/nextleap/nextleap-1-home.png';
 import nlVoice from './assets/projects/nextleap/nextleap-2-voice.png';
 import nlResult from './assets/projects/nextleap/nextleap-3-result.png';
@@ -33,7 +36,7 @@ import pmCopilotImg from './assets/projects/side-quests/pm-copilot.png';
 import jobAutomatorImg from './assets/projects/side-quests/job-automator.png';
 import './App.css';
 
-function App() {
+const Home = () => {
   const [activeSection, setActiveSection] = useState('about');
 
   useEffect(() => {
@@ -63,25 +66,7 @@ function App() {
   }, []);
 
   return (
-    <main>
-      <nav className="navbar">
-        <a href="#hero" className="nav-logo-link">
-          <div className="nav-logo">RB</div>
-        </a>
-        <div className="nav-links">
-          <a href="#about" className={`nav-item ${activeSection === 'about' ? 'active' : ''}`}><User size={16} /> <span>About</span></a>
-          <a href="#projects" className={`nav-item ${activeSection === 'projects' ? 'active' : ''}`}><Briefcase size={16} /> <span>Projects</span></a>
-          <a href="#approach" className={`nav-item ${activeSection === 'approach' ? 'active' : ''}`}><MousePointer2 size={16} /> <span>My Approach</span></a>
-          <a href="#my-world" className={`nav-item ${activeSection === 'my-world' ? 'active' : ''}`}><Globe size={16} /> <span>My World</span></a>
-        </div>
-        <div className="nav-divider"></div>
-        <div className="nav-socials">
-          <a href="https://www.linkedin.com/in/bangle-rahul-b33a71236/" target="_blank" rel="noopener noreferrer" className="social-link"><Linkedin size={18} /></a>
-          <a href="#" className="social-link"><Mail size={18} /></a>
-          <a href="#" className="social-link"><FileText size={18} /></a>
-        </div>
-      </nav>
-
+    <>
       <section id="hero" className="hero-container">
         <motion.div 
           className="hero-content"
@@ -262,198 +247,151 @@ function App() {
         <h2 className="projects-title">projects <span>showcase</span></h2>
         
         <motion.div 
-          className="project-card"
+          className="project-card clickable"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
+          component={Link}
+          to="/project/mission-control"
         >
-          <div className="project-header">
-            <span className="project-tag">Personal Project</span>
-            <span className="project-status shipped">Shipped</span>
-          </div>
-          <h3 className="project-title">Mission Control: AI Operations Dashboard</h3>
-          <p className="project-subtitle">Built a command center to manage AI agents, automate tasks, and track operations in real-time. Because spreadsheets weren't cutting it.</p>
-          
-          <div className="project-meta">
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">ROLE</span>
-                <span className="meta-content">Solo Builder (PM + Eng)</span>
+          <Link to="/project/mission-control" className="project-card-link">
+            <div className="project-header">
+              <span className="project-tag">Personal Project</span>
+              <span className="project-status shipped">Shipped</span>
+            </div>
+            <h3 className="project-title">Mission Control: AI Operations Dashboard</h3>
+            <p className="project-subtitle">Built a command center to manage AI agents, automate tasks, and track operations in real-time. Because spreadsheets weren't cutting it.</p>
+            
+            <div className="project-meta">
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">ROLE</span>
+                  <span className="meta-content">Solo Builder (PM + Eng)</span>
+                </div>
+                <div className="meta-section">
+                  <span className="meta-label">PROBLEM</span>
+                  <span className="meta-content">No single place to see what my AI agents were doing, when, and whether it worked.</span>
+                </div>
               </div>
-              <div className="meta-section">
-                <span className="meta-label">PROBLEM</span>
-                <span className="meta-content">No single place to see what my AI agents were doing, when, and whether it worked.</span>
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">STACK</span>
+                  <span className="meta-content">React · Supabase · FastAPI · Python</span>
+                </div>
+                <div className="meta-section">
+                  <span className="meta-label">IMPACT</span>
+                  <ul className="project-features">
+                    <li>99% efficiency score tracked live</li>
+                    <li>Real-time Supabase sync</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">STACK</span>
-                <span className="meta-content">React · Supabase · FastAPI · Python</span>
-              </div>
-              <div className="meta-section">
-                <span className="meta-label">WHAT I BUILT</span>
-                <ul className="project-features">
-                  <li>Kanban task board with AI agent assignment</li>
-                  <li>Strategy Timeline: cron job scheduler with weekly calendar view</li>
-                  <li>Team panel: 11 AI agents tracked live with 99% efficiency score</li>
-                  <li>Real-time Supabase sync</li>
-                </ul>
+            <div className="project-screenshot-featured">
+              <div className="project-screenshot-wrapper large">
+                <img src={mcTeamPanel} alt="Mission Control Team Panel" />
               </div>
             </div>
-          </div>
-          <div className="project-screenshot-featured">
-            <div className="project-screenshot-wrapper large">
-              <img src={mcTeamPanel} alt="Mission Control Team Panel" />
+            <div className="view-case-study">
+              View Case Study <ArrowRight size={18} />
             </div>
-          </div>
+          </Link>
         </motion.div>
 
         <motion.div 
-          className="project-card"
+          className="project-card clickable"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
-          <div className="project-header">
-            <span className="project-tag">Product Teardown</span>
-            <span className="project-status audit">Unprompted Audit</span>
-          </div>
-          <h3 className="project-title">Sprout: Onboarding UX Teardown</h3>
-          <p className="project-subtitle">Unprompted product audit. I tore this down because the onboarding was actively hurting users.</p>
-          
-          <div className="project-meta">
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">ROLE</span>
-                <span className="meta-content">Self-initiated PM analysis (Full user journey mapping)</span>
+          <Link to="/project/sprout" className="project-card-link">
+            <div className="project-header">
+              <span className="project-tag">Product Teardown</span>
+              <span className="project-status audit">Unprompted Audit</span>
+            </div>
+            <h3 className="project-title">Sprout: Onboarding UX Teardown</h3>
+            <p className="project-subtitle">Unprompted product audit. I tore this down because the onboarding was actively hurting users.</p>
+            
+            <div className="project-meta">
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">ROLE</span>
+                  <span className="meta-content">Self-initiated PM analysis</span>
+                </div>
+                <div className="meta-section">
+                  <span className="meta-label">PROBLEM</span>
+                  <span className="meta-content">Sprout's 30-step onboarding flow had dark patterns and unnecessary friction.</span>
+                </div>
               </div>
-              <div className="meta-section">
-                <span className="meta-label">PROBLEM</span>
-                <span className="meta-content">Sprout's 30-step onboarding flow had dark patterns, forced paywalls, and unnecessary friction that killed conversion.</span>
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">IMPACT</span>
+                  <ul className="project-features">
+                    <li>Identified 7 dark patterns</li>
+                    <li><span className="impact-highlight">Redesigned flow</span> to 5 screens</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">IMPACT</span>
-                <ul className="project-features">
-                  <li>Identified 7 dark patterns across 30-screen flow</li>
-                  <li><span className="impact-highlight">Redesigned onboarding</span> from 30 screens to 5</li>
-                  <li><span className="impact-highlight">Reduced time-to-value</span> from 20 min to under 2 min</li>
-                  <li><span className="impact-highlight">Proposed freemium model</span> to earn paywall trust</li>
-                </ul>
-                <a
-                  href="https://drive.google.com/file/d/1xJNK3Y7Ldv0ISh_qslWwGEwMvZQ93Z9F/view"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="teardown-button"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '0.8rem',
-                    marginTop: '2.5rem',
-                    backgroundColor: '#ff4d00',
-                    color: '#ffffff',
-                    fontWeight: '700',
-                    fontSize: '1.2rem',
-                    padding: '1rem 2rem',
-                    borderRadius: '12px',
-                    textDecoration: 'none',
-                    boxShadow: '0 10px 20px rgba(255, 77, 0, 0.2)',
-                    transition: 'all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)'
-                  }}
-                  onMouseOver={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.boxShadow = '0 15px 30px rgba(255, 77, 0, 0.3)';
-                    e.currentTarget.style.backgroundColor = '#e64500';
-                  }}
-                  onMouseOut={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 10px 20px rgba(255, 77, 0, 0.2)';
-                    e.currentTarget.style.backgroundColor = '#ff4d00';
-                  }}
-                >
-                  View Full Teardown <Zap size={22} fill="white" />
-                </a>              </div>
+            
+            <div className="annotation-anchor">
+              <ComparisonCanvas />
             </div>
-          </div>
-          
-          <div className="annotation-anchor">
-            <ComparisonCanvas />
-            <Annotation 
-              text="31 screens reduced to 8" 
-              direction="right"
-              arrowType="curly"
-              className="anno-sprout-audit"
-            />
-          </div>
-          
-          <div className="project-detail-label">Final Prototype</div>
-          <div className="annotation-anchor">
-            <PhoneMockup />
-            <Annotation 
-              text="High-fidelity prototype" 
-              direction="left"
-              arrowType="simple"
-              className="anno-sprout-proto"
-            />
-          </div>
-
+            <div className="view-case-study">
+              View Case Study <ArrowRight size={18} />
+            </div>
+          </Link>
         </motion.div>
 
         <motion.div 
-          className="project-card"
+          className="project-card clickable"
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.2 }}
         >
-          <div className="project-header">
-            <span className="project-tag">PM Fellowship</span>
-            <span className="project-status shipped">Completed</span>
-          </div>
-          <h3 className="project-title">ChatGPT Voice India: Homework Helper</h3>
-          <p className="project-subtitle">Identified a 50M+ user gap in ChatGPT's India strategy. Designed a voice-first feature for non-English medium parents in Tier 2/3 India.</p>
-          
-          <div className="project-meta">
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">ROLE</span>
-                <span className="meta-content">PM Fellow: research, PRD, wireframes, experiment design.</span>
+          <Link to="/project/chatgpt-voice" className="project-card-link">
+            <div className="project-header">
+              <span className="project-tag">PM Fellowship</span>
+              <span className="project-status shipped">Completed</span>
+            </div>
+            <h3 className="project-title">ChatGPT Voice India: Homework Helper</h3>
+            <p className="project-subtitle">Identified a 50M+ user gap in ChatGPT's India strategy. Designed a voice-first feature for non-English medium parents.</p>
+            
+            <div className="project-meta">
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">ROLE</span>
+                  <span className="meta-content">PM Fellow: research, PRD, wireframes.</span>
+                </div>
+                <div className="meta-section">
+                  <span className="meta-label">IMPACT</span>
+                  <ul className="project-features">
+                    <li><span className="impact-highlight">50-70M unlockable users</span></li>
+                    <li><span className="impact-highlight">83% discoverability gap</span></li>
+                  </ul>
+                </div>
               </div>
-              <div className="meta-section">
-                <span className="meta-label">IMPACT</span>
-                <ul className="project-features">
-                  <li><span className="impact-highlight">50-70M unlockable users</span> identified</li>
-                  <li><span className="impact-highlight">83% discoverability gap</span> confirmed via research</li>
-                </ul>
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">DELIVERABLES</span>
+                  <ul className="project-features">
+                    <li>Full PRD & Wireframes</li>
+                    <li>Experiment plan</li>
+                  </ul>
+                </div>
               </div>
             </div>
-            <div className="meta-column">
-              <div className="meta-section">
-                <span className="meta-label">DELIVERABLES</span>
-                <ul className="project-features">
-                  <li>Survey research (n=100)</li>
-                  <li>Full PRD with north star metrics</li>
-                  <li>Wireframes: 12 annotations, 4 screens</li>
-                  <li>ICE-scored prioritization</li>
-                  <li>A/B experiment plan with rollback criteria</li>
-                </ul>
-              </div>
-            </div>
-          </div>
 
-          <div className="carousel-wrapper" style={{ position: 'relative' }}>
-            <ProjectCarousel images={[nlHome, nlVoice, nlResult, hhScan, hhWave]} />
-            <Annotation 
-              text="83% discoverability gap confirmed via research" 
-              direction="up"
-              arrowType="loop"
-              className="annotation-nextleap-gap"
-              style={{ bottom: '-60px', right: '10%' }}
-            />
-          </div>
+            <div className="carousel-wrapper" style={{ position: 'relative' }}>
+              <ProjectCarousel images={[nlHome, nlVoice, nlResult, hhScan, hhWave]} />
+            </div>
+            <div className="view-case-study">
+              View Case Study <ArrowRight size={18} />
+            </div>
+          </Link>
         </motion.div>
 
       </section>
@@ -563,6 +501,42 @@ function App() {
       </section>
       
       <ContactWidget />
+    </>
+  );
+};
+
+function App() {
+  const location = useLocation();
+  const isProjectPage = location.pathname.startsWith('/project/');
+
+  return (
+    <main>
+      <nav className={`navbar ${isProjectPage ? 'project-nav' : ''}`}>
+        <Link to="/" className="nav-logo-link">
+          <div className="nav-logo">RB</div>
+        </Link>
+        {!isProjectPage && (
+          <div className="nav-links">
+            <a href="#about" className="nav-item"><User size={16} /> <span>About</span></a>
+            <a href="#projects" className="nav-item"><Briefcase size={16} /> <span>Projects</span></a>
+            <a href="#approach" className="nav-item"><MousePointer2 size={16} /> <span>My Approach</span></a>
+            <a href="#my-world" className="nav-item"><Globe size={16} /> <span>My World</span></a>
+          </div>
+        )}
+        <div className="nav-divider"></div>
+        <div className="nav-socials">
+          <a href="https://www.linkedin.com/in/bangle-rahul-b33a71236/" target="_blank" rel="noopener noreferrer" className="social-link"><Linkedin size={18} /></a>
+          <a href="#" className="social-link"><Mail size={18} /></a>
+          <a href="#" className="social-link"><FileText size={18} /></a>
+        </div>
+      </nav>
+
+      <AnimatePresence mode="wait">
+        <Routes location={location} key={location.pathname}>
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:id" element={<ProjectPage />} />
+        </Routes>
+      </AnimatePresence>
 
     </main>
   );
