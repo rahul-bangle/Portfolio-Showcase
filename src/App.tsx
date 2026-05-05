@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Routes, Route, Link, useLocation } from 'react-router-dom';
 import { 
   User, 
   Briefcase, 
@@ -20,9 +20,7 @@ import {
 import avatar from './assets/avatar.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
 import { ComparisonCanvas } from './components/ComparisonCanvas';
-import { PhoneMockup } from './components/PhoneMockup';
 import { ProjectCarousel } from './components/ProjectCarousel';
-import { Annotation } from './components/Annotation';
 import { SideQuestCard } from './components/SideQuestCard';
 import MyWorldCanvas from './components/MyWorldCanvas';
 import { ContactWidget } from './components/ContactWidget';
@@ -37,8 +35,6 @@ import jobAutomatorImg from './assets/projects/side-quests/job-automator.png';
 import './App.css';
 
 const Home = () => {
-  const [activeSection, setActiveSection] = useState('about');
-
   useEffect(() => {
     const sections = ['hero', 'about', 'projects', 'approach', 'my-world'];
     const observerOptions = {
@@ -50,7 +46,7 @@ const Home = () => {
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          setActiveSection(entry.target.id);
+          // Intersection observer logic remains for potential future use
         }
       });
     };
@@ -252,8 +248,6 @@ const Home = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          component={Link}
-          to="/project/mission-control"
         >
           <Link to="/project/mission-control" className="project-card-link">
             <div className="project-header">
