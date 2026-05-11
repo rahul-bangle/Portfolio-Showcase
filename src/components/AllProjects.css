@@ -1,0 +1,145 @@
+.all-projects-container {
+  min-height: 100vh;
+  background: #f8f8f8;
+  padding: 8rem 10% 4rem;
+  color: #1a1a1a;
+}
+
+.all-projects-header {
+  max-width: 1000px;
+  margin-bottom: 6rem;
+}
+
+.back-to-home {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  font-weight: 500;
+  margin-bottom: 3rem;
+  transition: color 0.3s ease;
+}
+
+.back-to-home:hover {
+  color: #000;
+}
+
+.all-projects-title {
+  font-size: 5rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
+
+.all-projects-title span {
+  color: #666;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.all-projects-subtitle {
+  font-size: 1.4rem;
+  color: #666;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.projects-list {
+  max-width: 1000px;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.project-list-item {
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.project-list-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.3s ease;
+}
+
+.project-list-link:hover {
+  transform: translateX(10px);
+}
+
+.project-list-info {
+  flex: 1;
+}
+
+.project-list-meta {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #888;
+}
+
+.project-list-title {
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  letter-spacing: -0.02em;
+}
+
+.project-list-desc {
+  font-size: 1.1rem;
+  color: #666;
+  max-width: 700px;
+  line-height: 1.4;
+}
+
+.project-list-action {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.3s ease;
+}
+
+.project-list-link:hover .project-list-action {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.all-projects-footer {
+  margin-top: 8rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e0e0e0;
+  color: #888;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .all-projects-container {
+    padding: 6rem 5% 2rem;
+  }
+
+  .all-projects-title {
+    font-size: 3.5rem;
+  }
+
+  .project-list-link {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .project-list-action {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

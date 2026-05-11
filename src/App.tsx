@@ -19,12 +19,14 @@ import {
 } from 'lucide-react';
 import avatar from './assets/avatar.png';
 import mcTeamPanel from './assets/projects/mission-control/team-panel.png';
+import sitebotImg from './assets/projects/sitebot/sitebot.png';
 import { ComparisonCanvas } from './components/ComparisonCanvas';
 import { ProjectCarousel } from './components/ProjectCarousel';
 import { SideQuestCard } from './components/SideQuestCard';
 import MyWorldCanvas from './components/MyWorldCanvas';
 import { ContactWidget } from './components/ContactWidget';
 import { ProjectPage } from './components/ProjectPage';
+import { AllProjects } from './components/AllProjects';
 import nlHome from './assets/projects/nextleap/nextleap-1-home.png';
 import nlVoice from './assets/projects/nextleap/nextleap-2-voice.png';
 import nlResult from './assets/projects/nextleap/nextleap-3-result.png';
@@ -298,6 +300,53 @@ const Home = () => {
           initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: "easeOut", delay: 0.15 }}
+        >
+          <Link to="/project/sitebot" className="project-card-link">
+            <div className="project-header">
+              <span className="project-tag">Chrome Extension</span>
+              <span className="project-status shipped">Shipped</span>
+            </div>
+            <h3 className="project-title">SiteBot: Universal AI Layer for the Web</h3>
+            <p className="project-subtitle">Built a browser-native AI assistant that understands the semantic DNA of any live webpage. No more copy-pasting.</p>
+            
+            <div className="project-meta">
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">ROLE</span>
+                  <span className="meta-content">Solo Builder</span>
+                </div>
+                <div className="meta-section">
+                  <span className="meta-label">PROBLEM</span>
+                  <span className="meta-content">AI tools are context-blind to the live UI structure of webpages.</span>
+                </div>
+              </div>
+              <div className="meta-column">
+                <div className="meta-section">
+                  <span className="meta-label">IMPACT</span>
+                  <ul className="project-features">
+                    <li>70+ chunks synthesized into 1 summary</li>
+                    <li><span className="impact-highlight">100% UI stability</span> via Shadow DOM</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div className="project-screenshot-featured">
+              <div className="project-screenshot-wrapper extension-shot">
+                <img src={sitebotImg} alt="SiteBot Browser Extension" />
+              </div>
+            </div>
+            <div className="view-case-study">
+              View Case Study <ArrowRight size={18} />
+            </div>
+          </Link>
+        </motion.div>
+
+        <motion.div 
+          className="project-card clickable"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.7, ease: "easeOut", delay: 0.1 }}
         >
           <Link to="/project/sprout" className="project-card-link">
@@ -385,6 +434,18 @@ const Home = () => {
             <div className="view-case-study">
               View Case Study <ArrowRight size={18} />
             </div>
+          </Link>
+        </motion.div>
+
+        <motion.div 
+          className="view-all-projects-wrapper"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.4 }}
+        >
+          <Link to="/projects" className="btn-view-all">
+            View all my projects <ArrowRight size={20} />
           </Link>
         </motion.div>
 
@@ -528,6 +589,7 @@ function App() {
       <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/" element={<Home />} />
+          <Route path="/projects" element={<AllProjects />} />
           <Route path="/project/:id" element={<ProjectPage />} />
         </Routes>
       </AnimatePresence>
